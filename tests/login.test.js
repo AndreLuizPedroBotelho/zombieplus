@@ -10,7 +10,7 @@ module.exports = {
       .assert.containsText('.user .info span', 'Andre')
       .end();
   },*/
-  'quando eu acesso a pagi na de login': function (browser) {
+  'quando eu acesso a pagina de login': function (browser) {
     browser
       .url('http://zombie-web:5000/login')
       .waitForElementVisible('.card-login', 3000)
