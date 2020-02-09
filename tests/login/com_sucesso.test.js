@@ -1,16 +1,19 @@
 module.exports = {
-  /*'login com sucesso': function (browser) {
+  'login com sucesso': (browser) => {
+    let userInfo = '.user .info span'
+
     browser
+      .resizeWindow(1920, 1080)
       .url('http://zombie-web:5000/login')
       .waitForElementVisible('.card-login', 3000)
       .setValue('input[name=email]', 'zumbi@hotmail.com')
       .setValue('input[name=password]', 'pwd123')
       .click('.login-button')
-      .waitForElementVisible('.user .info span', 3000)
-      .assert.containsText('.user .info span', 'Andre')
+      .waitForElementVisible(userInfo, 3000)
+      .assert.containsText(userInfo, 'Andre')
       .end();
-  },*/
-  'quando eu acesso a pagina de login': function (browser) {
+  },
+  /*'quando eu acesso a pagina de login': function (browser) {
     browser
       .url('http://zombie-web:5000/login')
       .waitForElementVisible('.card-login', 3000)
@@ -27,5 +30,5 @@ module.exports = {
       .waitForElementVisible(userInfo, 3000)
       .assert.containsText(userInfo, 'Andre')
       .end();
-  },
+  },*/
 }
