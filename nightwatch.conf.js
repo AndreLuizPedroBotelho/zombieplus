@@ -6,6 +6,8 @@ module.exports = {
 
   page_objects_path: './pages',
 
+  globals_path: './hooks/globals.js',
+
   webdriver: {
     start_process: true,
     server_path: chromedriver.path,
