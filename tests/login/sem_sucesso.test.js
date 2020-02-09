@@ -1,55 +1,42 @@
 module.exports = {
-  'senha incorreta': (browser) => {
-    let alert = '.alert-danger';
+  before: (browser) => {
     browser
       .resizeWindow(1920, 1080)
-      .url('http://zombie-web:5000/login')
-      .waitForElementVisible('.card-login', 3000)
-      .setValue('input[name=email]', 'zumbi@hotmail.com')
-      .setValue('input[name=password]', '123abc')
-      .click('.login-button')
-      .waitForElementVisible(alert, 3000)
-      .assert.containsText(alert, 'Usuário e/ou senha inválidos')
+  },
+  after: (browser) => {
+    browser.end();
+  },
+  'senha incorreta': (browser) => {
+    let login = browser.page.login()
+
+    login
+      .with('zumbi@hotmail.com', '123abc')
+      .waitForElementVisible('@alertDanger', 3000)
+      .assert.containsText('@alertDanger', 'Usuário e/ou senha inválidos')
   },
   'não cadastrado': (browser) => {
-    let alert = '.alert-danger';
+    let login = browser.page.login()
 
-    browser
-      .resizeWindow(1920, 1080)
-      .url('http://zombie-web:5000/login')
-      .waitForElementVisible('.card-login', 3000)
-      .setValue('input[name=email]', '404@yahoo.com')
-      .setValue('input[name=password]', '123abc')
-      .click('.login-button')
-      .waitForElementVisible(alert, 3000)
-      .assert.containsText(alert, 'Usuário e/ou senha inválidos')
+    login
+      .with('404@yahoo.com', '123abc')
+      .waitForElementVisible('@alertDanger', 3000)
+      .assert.containsText('@alertDanger', 'Usuário e/ou senha inválidos')
   },
   'email não informado': (browser) => {
-    let alert = '.alert-info';
+    let login = browser.page.login()
 
-    browser
-      .resizeWindow(1920, 1080)
-      .url('http://zombie-web:5000/login')
-      .waitForElementVisible('.card-login', 3000)
-      .setValue('input[name=email]', '')
-      .setValue('input[name=password]', '123abc')
-      .click('.login-button')
-      .waitForElementVisible(alert, 3000)
-      .assert.containsText(alert, 'Opps. Cadê o email?')
+    login
+      .with('', '123abc')
+      .waitForElementVisible('@alertInfo', 3000)
+      .assert.containsText('@alertInfo', 'Opps. Cadê o email?')
   },
   'senha não informada': (browser) => {
-    let alert = '.alert-info';
+    let login = browser.page.login()
 
-    browser
-      .resizeWindow(1920, 1080)
-      .url('http://zombie-web:5000/login')
-      .waitForElementVisible('.card-login', 3000)
-      .setValue('input[name=email]', 'zumbi@hotmail.com')
-      .setValue('input[name=password]', '')
-      .click('.login-button')
-      .waitForElementVisible(alert, 3000)
-      .assert.containsText(alert, 'Opps. Cadê a senha?')
-      .end();
+    login
+      .with('zumbi@hotmail.com', '')
+      .waitForElementVisible('@alertInfo', 3000)
+      .assert.containsText('@alertInfo', 'Opps. Cadê a senha?')
   },
 
 }
