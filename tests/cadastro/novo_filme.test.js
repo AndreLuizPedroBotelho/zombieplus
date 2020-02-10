@@ -1,0 +1,45 @@
+import pg from '../../lib/db'
+
+let movieData = {}
+
+module.exports = {
+  before: function (browser) {
+
+    movieData = {
+      title: 'Resident Evil',
+      status: 'Disponível',
+      year: 2002,
+      releaseDate: '01/05/2002',
+      cast: ['Milla Jovovich', 'Ali Larter', 'Ian Glen', 'Shawn Roberts'],
+      cover: 'resident-evil-2002.jpg',
+      plot: 'A missão do esquadrão e da Alice é desligar a rainha Vermelha e coletar dadis sibre o incidente'
+    }
+
+    //Remove Title
+    pg.removeByTitle(movieData.title)
+
+    let login = browser.page.login()
+    let sidebar = browser.page.sidebar()
+
+    login
+      .with('zumbi@hotmail.com', 'pwd123')
+
+    sidebar.expectLoggedUser('Andre')
+
+  },
+  'quando eu faço o cadastro do filme': (browser) => {
+    let movie = browser.page.movie()
+
+    movie
+      .createForm()
+      .setValue('@titleInput', movieData.title)
+      .selectStatus(movieData.status)
+      .setValue('@yearInput', movieData.year)
+      .setValue('@dateInput', movieData.releaseDate)
+      .insertCast(movieData.cast)
+      .setValue('@plotInput', movieData.plot)
+      .click('@createButton')
+      .waitForElementVisible('@addButton', 3000)
+  }
+
+}

@@ -1,0 +1,50 @@
+version: '2'
+services:
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+    container_name: postgres
+    ports:
+      - '15432:5432'
+    restart: always
+    volumes:
+      - '/home/Projeto/Volumes/PGAdmin:/var/lib/postgresql/data' 
+    networks:
+       projeto-network  :
+             ipv4_address: "172.18.0.1"
+             
+  zombie-api:
+     image: papitoio/zombie-api
+     container_name: zombie-api
+     restart: always
+     ports:
+      - "3000:3000"
+     environment:
+        DATABASE: "postgres"
+     networks:
+       projeto-network  :
+         ipv4_address: "172.18.0.2"  
+             
+  zombie-web:
+     image: papitoio/zombie-web
+     container_name: zombie-web
+     restart: always
+     environment:
+       VUE_APP_API: "http://zombie-api:3000"
+     ports:
+      - "5000:5000"
+     networks:
+       projeto-network  :
+             ipv4_address: "172.18.0.3"  
+networks: 
+    projeto-network:
+      driver: bridge
+      driver_opts:
+        com.docker.network.enable_ipv6: "false"
+      ipam:
+        driver: default
+        config:
+        - subnet: 172.18.0.0/24
+          gateway: 172.18.0.1
