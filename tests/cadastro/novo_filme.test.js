@@ -12,7 +12,7 @@ module.exports = {
       releaseDate: '01/05/2002',
       cast: ['Milla Jovovich', 'Ali Larter', 'Ian Glen', 'Shawn Roberts'],
       cover: 'resident-evil-2002.jpg',
-      plot: 'A missão do esquadrão e da Alice é desligar a rainha Vermelha e coletar dadis sibre o incidente'
+      plot: 'A missão do esquadrão e da Alice é desligar a rainha Vermelha e coletar dados sobre o incidente'
     }
 
     //Remove Title
@@ -38,8 +38,16 @@ module.exports = {
       .setValue('@dateInput', movieData.releaseDate)
       .insertCast(movieData.cast)
       .setValue('@plotInput', movieData.plot)
+      .uploadCover(movieData.cover)
       .click('@createButton')
-      .waitForElementVisible('@addButton', 3000)
+  },
+  'entao devo ver o filme na lista': (browser) => {
+    let movie = browser.page.movie()
+
+    movie
+      .waitForElementVisible('@list', 5000)
+      .assert.containsText('@list', movieData.title)
+
   }
 
 }

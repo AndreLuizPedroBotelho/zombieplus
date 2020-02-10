@@ -24,6 +24,12 @@ const createActions = {
     })
 
     return this;
+  },
+  uploadCover: function (fileName) {
+    const fullPath = require('path').resolve(__dirname, '../images/' + fileName)
+
+    return this.setValue('@uploadInput', fullPath)
+
   }
 }
 module.exports = {
@@ -38,6 +44,8 @@ module.exports = {
     dateInput: 'input[name=release_date]',
     castInput: '.cast',
     plotInput: 'textarea[name=overview]',
-    createButton: '#create-movie'
+    uploadInput: '#upcover',
+    createButton: '#create-movie',
+    list: 'table tbody'
   }
 }
