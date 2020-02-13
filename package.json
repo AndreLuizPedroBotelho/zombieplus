@@ -8,6 +8,8 @@
     "test:login": "./node_modules/.bin/nightwatch --group login",
     "test:nologin": "./node_modules/.bin/nightwatch --skipgroup login",
     "test:smoke": "./node_modules/.bin/nightwatch --tag smoke",
+    "stage:smoke": "./node_modules/.bin/nightwatch --tag smoke --env=stage",
+    "test:headless": "./node_modules/.bin/nightwatch --tag smoke --env=headless",
     "test:nosmoke": "./node_modules/.bin/nightwatch --skiptags smoke,404",
     "test": "./node_modules/.bin/nightwatch"
   },
