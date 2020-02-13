@@ -28,7 +28,10 @@ const createActions = {
   uploadCover: function (fileName) {
     const fullPath = require('path').resolve(__dirname, '../images/' + fileName)
 
-    return this.setValue('@uploadInput', fullPath)
+    return this
+      .setValue('@uploadInput', fullPath)
+      .pause(1000)
+      .assert.attributeContains('.picture-src', 'src', 'blob')
 
   }
 }
@@ -37,6 +40,9 @@ module.exports = {
 
   elements: {
     addButton: '.movie-add',
+    searchInput: 'input[placeholder^=Pesquisar]',
+    searchIcon: '#search-movie',
+    alertDanger: '.alert-danger',
     movieForm: '#movie-form',
     titleInput: 'input[name=title]',
     statusSelect: 'input[placeholder=Status]',
@@ -46,6 +52,7 @@ module.exports = {
     plotInput: 'textarea[name=overview]',
     uploadInput: '#upcover',
     createButton: '#create-movie',
-    list: 'table tbody'
+    list: 'table tbody',
+    tr: 'table tbody tr'
   }
 }

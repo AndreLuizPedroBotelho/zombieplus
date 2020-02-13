@@ -2,7 +2,7 @@ require('babel-core/register');
 
 const chromedriver = require('chromedriver');
 module.exports = {
-  src_folders: ['tests/'],
+  src_folders: ['tests'],
 
   page_objects_path: './pages',
 
@@ -14,8 +14,16 @@ module.exports = {
     port: 9515
   },
 
+  test_workers: {
+    enabled: true,
+    workers: 4
+  },
+
   test_settings: {
     default: {
+      globals: {
+        waitForConditionTimeout: 15000
+      },
       desiredCapabilities: {
         browserName: "chrome"
       }
