@@ -11,7 +11,8 @@
     "stage:smoke": "./node_modules/.bin/nightwatch --tag smoke --env=stage",
     "test:headless": "./node_modules/.bin/nightwatch --tag smoke --env=headless",
     "test:nosmoke": "./node_modules/.bin/nightwatch --skiptags smoke,404",
-    "test": "./node_modules/.bin/nightwatch"
+    "test": "./node_modules/.bin/nightwatch",
+    "test:ci": "./node_modules/.bin/nightwatch --tag smoke --env=headless"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
