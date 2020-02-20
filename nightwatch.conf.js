@@ -1,7 +1,6 @@
 require('babel-core/register');
 
 const chromedriver = require('chromedriver');
-require('geckodriver');
 
 const testUrl = 'http://zombie-web:5000';
 const defaultTimeout = 15000;
