@@ -1,4 +1,6 @@
 module.exports = {
+  '@tags': ['smoke'],
+
   'não cadastrado': (browser) => {
     let login = browser.page.login()
     login
