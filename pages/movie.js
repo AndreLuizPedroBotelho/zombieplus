@@ -5,13 +5,13 @@ const createActions = {
   createForm: function () {
     return this
       .click('@addButton')
-      .waitForElementVisible('@movieForm', 10000)
+      .waitForElementVisible('@movieForm', 30000)
   },
   selectStatus: function (status) {
     return this
       .click('@statusSelect')
       .useXpath()
-      .waitForElementVisible(`//li//span[contains(text(),"${status}")]`, 10000)
+      .waitForElementVisible(`//li//span[contains(text(),"${status}")]`, 30000)
       .click(`//li//span[contains(text(),"${status}")]`)
       .useCss()
   },
