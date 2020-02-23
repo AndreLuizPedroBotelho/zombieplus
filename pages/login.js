@@ -2,7 +2,7 @@ const loginActions = {
   with: function (email, pass) {
     return this
       .navigate()
-      .waitForElementVisible('@form', 30000)
+      .waitForElementVisible('@form', 100000)
       .setValue('@emailInput', email)
       .setValue('@passwordInput', pass)
       .click('@loginInput')
