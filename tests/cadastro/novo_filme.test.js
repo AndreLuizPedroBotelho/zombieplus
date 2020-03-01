@@ -3,7 +3,7 @@ import pg from '../../lib/db'
 let movieData = {}
 
 module.exports = {
-  '@tags': ['cadastro'],
+  '@tags': ['smoke'],
 
   before: function (browser) {
 
@@ -47,7 +47,7 @@ module.exports = {
     let movie = browser.page.movie()
 
     movie
-      .waitForElementPresent('@list', 100000)
+      .waitForElementPresent('@list', 10000)
       .assert.containsText('@list', movieData.title)
 
   }
