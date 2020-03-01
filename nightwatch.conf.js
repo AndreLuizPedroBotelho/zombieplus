@@ -16,9 +16,16 @@ module.exports = {
     start_process: true,
   },
 
-  test_workers: {
+  /*test_workers: {
     enabled: true,
     workers: 2
+  },*/
+
+  screenshoits: {
+    enabled: true,
+    on_failure: true,
+    on_error: true,
+    path: 'tests_output/'
   },
 
   test_settings: {
